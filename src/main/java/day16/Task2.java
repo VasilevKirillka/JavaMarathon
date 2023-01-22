@@ -10,16 +10,83 @@ import java.util.Scanner;
 public class Task2 {
     public static void main(String[] args) {
 
+//        File file1 = new File("file1.txt");
+//        File file2 = new File("file2.txt");
+//
+//        try {
+//            PrintWriter pw1 = new PrintWriter(file1);
+//            int[] array = new int[1000];
+//            for (int i = 0; i < array.length; i++) {
+//                array[i] = (int) (Math.random() * 100);
+//                System.out.print(array[i] + " ");
+//                pw1.print(array[i] + " ");
+//
+//            }
+//            System.out.println();
+//            pw1.close();
+//
+//        } catch (FileNotFoundException e) {
+//            System.out.println("Файл 1 не найден");
+//        }
+//        try {
+//            PrintWriter pw2 = new PrintWriter(file2);
+//            Scanner scanner = new Scanner(file1);
+//            List<Integer> numbers = new ArrayList<>();
+//            int sum = 0;
+//            double average;
+//
+//            while (scanner.hasNextLine()) {
+//                String line =scanner.nextLine();
+//                String[] numbersString = line.split(" ");
+//
+//                for (String number : numbersString)
+//                numbers.add(Integer.parseInt(number));
+//            }
+//            for (int i = 0; i < numbers.size(); i += 20) {
+//                for (int j = i; j < i + 20; j++) {
+//                    sum += numbers.get(j);
+//                }
+//                average = sum / 20.0;
+//                pw2.print(average + " ");
+//
+//                System.out.print(average + " ");
+//                sum = 0;
+//            }
+//            pw2.close();
+//            System.out.println();
+//
+//        } catch (FileNotFoundException e) {
+//            System.out.println("Файл 2 не найден");
+//        }
+//        public static void printResult(File file) {
+//            try {
+//                Scanner sc = new Scanner(file);
+//                double sum = 0;
+//                while (sc.hasNextLine()) {
+//                    String line = sc.nextLine();
+//                    String[] sumNumb= line.split(" ");
+//                    for (String number : sumNumb)
+//                        sum += Float.parseFloat(number);
+//                }
+//                System.out.println((int) sum);
+//            } catch (FileNotFoundException e) {
+//                System.out.println("Файл не найден");
+//            }
+//
+//        }
+//
+//    }
+
+        System.out.println("Другой вариант");
         File file1 = new File("file1.txt");
-        File file2 = new File("file2.txt");
 
         try {
             PrintWriter pw1 = new PrintWriter(file1);
-            int[] array = new int[1000];
-            for (int i = 0; i < array.length; i++) {
-                array[i] = (int) (Math.random() * 100);
-                System.out.print(array[i] + " ");
-                pw1.print(array[i] + " ");
+
+            for (int i = 0; i < 1000; i++) {
+                int num = (int) (Math.random() * 100);
+                System.out.print(num + " ");
+                pw1.println(num);
 
             }
             System.out.println();
@@ -28,32 +95,31 @@ public class Task2 {
         } catch (FileNotFoundException e) {
             System.out.println("Файл 1 не найден");
         }
+        File file2 = new File("file2.txt");
         try {
             PrintWriter pw2 = new PrintWriter(file2);
             Scanner scanner = new Scanner(file1);
-            List<Integer> numbers = new ArrayList<>();
+            int counter=0;
             int sum = 0;
-            double average;
 
             while (scanner.hasNextLine()) {
-                String line =scanner.nextLine();
-                String[] numbersString = line.split(" ");
+                String line = scanner.nextLine();
+                sum += Integer.parseInt(line);
+                counter++;
+                double average;
 
-                for (String number : numbersString)
-                numbers.add(Integer.parseInt(number));
-            }
-            for (int i = 0; i < numbers.size(); i += 20) {
-                for (int j = i; j < i + 20; j++) {
-                    sum += numbers.get(j);
+                if (counter == 20) {
+                    average= sum/20.0;
+                    pw2.println(average);
+                    counter = 0;
+                    sum = 0;
+                    System.out.print(average + " ");
                 }
-                average = sum / 20.0;
-                pw2.print(average + " ");
-
-                System.out.print(average + " ");
-                sum = 0;
             }
-            pw2.close();
+                pw2.close();
             System.out.println();
+
+
 
         } catch (FileNotFoundException e) {
             System.out.println("Файл 2 не найден");
@@ -66,10 +132,8 @@ public class Task2 {
             Scanner sc = new Scanner(file);
             double sum = 0;
             while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                String[] sumNumb= line.split(" ");
-                for (String number : sumNumb)
-                sum += Float.parseFloat(number);
+
+                sum += Float.parseFloat(sc.nextLine());
             }
             System.out.println((int) sum);
         } catch (FileNotFoundException e) {

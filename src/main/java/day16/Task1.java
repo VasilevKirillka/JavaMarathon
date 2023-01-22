@@ -22,7 +22,7 @@ public class Task1 {
                 sum += Integer.parseInt(number);
             double average= (double) sum/numbersString.length;
             String formatAverage = new DecimalFormat("#0.000").format(average);
-            System.out.print(average+ " --> " + formatAverage);
+            System.out.print(average+ " --> " + formatAverage);  // average+ " --> %.3f", average
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
         }
